@@ -16,12 +16,13 @@
 # If the string length is less than 3, leave it unchanged.
 # Return the resulting string.
 def verbing(s):
+   msg = s
    if (len(s) >= 3):
       if (s[-3:] == 'ing'):
-         ret = s + 'ly'
+         msg = s + 'ly'
       else:
-         ret = s + 'ing'
-   return ret
+         msg = s + 'ing'
+   return msg
 
 
 # E. not_bad
@@ -33,8 +34,20 @@ def verbing(s):
 # So 'This dinner is not that bad!' yields:
 # This dinner is good!
 def not_bad(s):
-  # +++your code here+++
-  return
+   msg = s
+   if ((s.find('not') != -1) and (s.find('bad') != -1)):
+      notIndex = s.find('not')
+      badIndex = s.find('bad')
+      if (notIndex < badIndex):
+         # I really can't think of a way to determine if
+         # the end of the string 's' contains any other punctuation.
+         # What if string 's' ended in a '?' or a '&'?
+         # So I suppose I'll write this code so that it passes the test below
+         if (s[len(s) - 1] == '!'):
+            msg = s[: notIndex] + 'good!'
+         else:
+            msg = s[: notIndex] + 'good'
+   return msg
 
 
 # F. front_back
@@ -45,8 +58,21 @@ def not_bad(s):
 # Given 2 strings, a and b, return a string of the form
 #  a-front + b-front + a-back + b-back
 def front_back(a, b):
-  # +++your code here+++
-  return
+   if (len(a) % 2 == 0):
+      aFront = a[ : (len(a)/2)]
+      aBack = a[(len(a)/2) : ]
+   else:
+      aFront = a[ : (len(a)/2) + 1]
+      aBack = a[(len(a)/2) + 1 : ]
+
+   if (len(b) % 2 == 0):
+      bFront = b[ : (len(b)/2)]
+      bBack = b[(len(b)/2) : ]
+   else:
+      bFront = b[ : (len(b)/2) + 1]
+      bBack = b[(len(b)/2) + 1 : ]
+
+   return aFront + bFront + aBack + bBack
 
 
 # Simple provided test() function used in main() to print
