@@ -59,9 +59,6 @@ def print_top(filename):
    for word, count in sorted(wordCountDict.items(), key=lambda item: item[-1], reverse=True)[:20]:
       print word,'>>',count
 
-def last_val(ltuple):
-   return ltuple[-1]
-
 # Builds and returns a dictionary of word/count pairs from a text file
 def build_dict(filename):
    dict = {}
