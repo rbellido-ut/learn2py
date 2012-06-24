@@ -39,7 +39,49 @@ print_words() and print_top().
 
 import sys
 
-# +++your code here+++
+def print_words(filename):
+   """
+   # For debugging purposes, print the original text
+   txtfile = open(filename, 'rU')
+   for line in txtfile:
+      print line
+   txtfile.close()
+   """
+
+   wordCountDict = build_dict(filename)
+   # Now I need to print the word/count pairs in sorted order
+   for word,count in sorted(wordCountDict.items()):
+      print word,'>>',count
+
+def print_top(filename):
+   wordCountDict = build_dict(filename)
+
+   for word, count in sorted(wordCountDict.items(), key=lambda item: item[-1], reverse=True)[:20]:
+      print word,'>>',count
+
+def last_val(ltuple):
+   return ltuple[-1]
+
+# Builds and returns a dictionary of word/count pairs from a text file
+def build_dict(filename):
+   dict = {}
+   txtfile = open(filename, 'rU')
+
+   # Build the dictionary by assigning each word encountered in a line
+   # as a key and assigning 1 as its value.
+   # For every other word that is already in the dictionary, add 1 to
+   # the value of the matching word-key in the dictionary
+   for line in txtfile:
+     lowercaseLineSplit = line.lower().split()
+     for word in lowercaseLineSplit:
+        if word in dict.keys():
+           dict[word] += 1
+        else:
+           dict[word] = 1
+   txtfile.close()
+
+   return dict
+
 # Define print_words(filename) and print_top(filename) functions.
 # You could write a helper utility function that reads a file
 # and builds and returns a word/count dict for it.

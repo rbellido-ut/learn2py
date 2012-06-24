@@ -52,9 +52,8 @@ def both_ends(s):
 # Hint: s.replace(stra, strb) returns a version of string s
 # where all instances of stra have been replaced by strb.
 def fix_start(s):
-   first = s[0]
-   return first + s.replace(first, '*')[1:]
-
+   firstchar = s[0]
+   return firstchar + s.replace(firstchar, '*')[1:]
 
 # D. MixUp
 # Given strings a and b, return a single string with a and b separated
